@@ -212,6 +212,8 @@ void st_wake_up()
 // Stepper shutdown
 void st_go_idle() 
 {
+  PORTD=0;
+	PORTC=0;
   // Disable Stepper Driver Interrupt. Allow Stepper Port Reset Interrupt to finish, if active.
   TIMSK1 &= ~(1<<OCIE1A); // Disable Timer1 interrupt
   TCCR1B = (TCCR1B & ~((1<<CS12) | (1<<CS11))) | (1<<CS10); // Reset clock to no prescaling.
